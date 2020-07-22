@@ -1,0 +1,18 @@
+<ul>
+  <ul>
+    <li class="toggle info-hidden">{% assign time = site.time | date: "%b %d, %Y %H:%M" %}
+    updated {{ time }}</li>
+  </ul>
+  <ul>
+    <li class="toggle info-hidden">built by <a href="https://alexiansmith.com" target="blank">alex ian smith</a></li>
+    <li class="toggle info-hidden"><a href="https://github.com/" target="blank"><i class="fa fa-github"></i> view source</a></li>
+  </ul>
+  {% if page.layout == "blog" %}
+    {% include player.html %} <!-- autio player -->
+  {% endif %}
+  {% if page.url != "/contact.html" %}
+  <a href="/contact.html">contact <i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+    {% endif %}
+  <a class="infoToggle" onclick="showInfo()">site info</a>
+  
+</ul>

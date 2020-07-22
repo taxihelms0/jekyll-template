@@ -1,0 +1,51 @@
+{% for post in site.posts %}
+<!-- <li class="blogPost"> -->
+  <div class="grid-container hoverable" onclick="showContent('{{ post.title }}')">
+
+    <div class="grid-item post-title">{{ post.title }}</div>
+    <!-- {% if post.category=='audio' and post.media_file %}
+      <a id="{{ post.title }} media" onclick="playSomeAudio('{{ post.title }}')">{{ post.media_file }}</a>
+    {% endif %} -->
+    <div class="grid-item post-excerpt">{{ post.excerpt | strip_html }}</div>
+    <div class="grid-item post-date">{{ post.date | date_to_string }}</div>
+  </div>
+  <div id = "{{ post.title }}-content" class="grid-container post-content">
+    <div class="grid-item">
+      {% if post.excerpt contains "://" %}{{ post.content }}{% else %}{{ post.content | remove_first: post.excerpt }}{% endif %}
+    </div>
+  </div>
+  
+      
+  
+  <!-- <button onclick="playSomeAudio('{{ post.title }}')">hear it</button> -->
+  <!-- <div>
+      <audio controls style="width:50%">
+    <source src="{{ post.media_file }}">
+  Your browser does not support the audio element.
+  </audio>
+  </div> -->
+<!-- </li> -->
+{% endfor %}
+
+<script>
+let posts = {
+  {% for p in site.posts %}
+    "{{ p.title }}": {
+      category: "{{ p.category }}",
+      date: "{{ p.date | date_to_string }}",
+      mediaFile: "{{ p.media_file }}",
+      excerpt: "{{ p.excerpt | strip_html | rstrip }}",
+    },
+  {% endfor %}
+  };
+
+function showContent(postName) {
+  // console.log(postName);
+  let contentBox = document.getElementById(postName + "-content");
+  if(contentBox.className.includes(" show")) {
+    contentBox.className = "grid-container post-content";
+  } else {
+    contentBox.className += " show";
+  }
+}
+</script>

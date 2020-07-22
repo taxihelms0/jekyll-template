@@ -1,0 +1,14 @@
+<nav class="topnav{% if page.url == '/' %} responsive{% endif %}" id="myTopnav">
+  <ul id="menuList">
+    <a href="/" id="brand" class="menuItem">{{ site.title | upcase }}</a>
+    {% for item in site.menus.navigation %}
+    <a href="{{ item.url }}" class="{% if page.url == item.url %}current {% endif %}menuItem">{{ item.title | upcase }}</a>
+    {% endfor %}
+    <a href="javascript:void(0);" id="hamburger" class="icon" onclick="dropDown()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </ul>
+</nav>
+  
+<script type="text/javascript" src="/assets/js/nav.js"> </script>
+
